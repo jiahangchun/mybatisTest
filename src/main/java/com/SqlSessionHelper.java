@@ -21,20 +21,20 @@ public class SqlSessionHelper {
             sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
             reader.close();
             //创建数据库
-//            SqlSession session = null;
-//            try {
-//                session = sqlSessionFactory.openSession();
-//                Connection conn = session.getConnection();
-//                reader = Resources.getResourceAsReader("hsqldb.sql");
-//                ScriptRunner runner = new ScriptRunner(conn);
-//                runner.setLogWriter(null);
-//                runner.runScript(reader);
-//                reader.close();
-//            } finally {
-//                if (session != null) {
-//                    session.close();
-//                }
-//            }
+            SqlSession session = null;
+            try {
+                session = sqlSessionFactory.openSession();
+                Connection conn = session.getConnection();
+                reader = Resources.getResourceAsReader("init.sql");
+                ScriptRunner runner = new ScriptRunner(conn);
+                runner.setLogWriter(null);
+                runner.runScript(reader);
+                reader.close();
+            } finally {
+                if (session != null) {
+                    session.close();
+                }
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
