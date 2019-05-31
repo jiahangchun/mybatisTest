@@ -14,9 +14,14 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
+/**
+ * @author jiahangchun
+ */
 public class DomTest {
-    public static void main(String[] args) throws IOException {
-        String path=DomTest.getPath();
+    private static String PATH_NAME="dom/people.xml";
+
+    public static void main(String[] args) throws Exception {
+        String path=ParseUtil.getResourcePath(PATH_NAME);
         try {
             File file = new File(path);
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -59,15 +64,7 @@ public class DomTest {
         }
     }
 
-    public static String getPath() throws IOException {
-        Enumeration<URL> keyPath= DomTest.getClassLoader().getResources("dom/people.xml");
-        URL url=null;
-        while(keyPath.hasMoreElements()){
-            url=keyPath.nextElement();
-           return url.getPath();
-        }
-        return null;
-    }
+
 
     public static ClassLoader getClassLoader() {
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();

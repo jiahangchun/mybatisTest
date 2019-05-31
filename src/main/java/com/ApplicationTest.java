@@ -6,6 +6,9 @@ import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
 
+/**
+ * @author jiahangchun
+ */
 public class ApplicationTest {
     public static void main(String[] args) {
         SqlSession session = SqlSessionHelper.getSqlSession();
@@ -15,11 +18,6 @@ public class ApplicationTest {
             blogDOS.forEach(x->{
                 System.out.println(x.getName());
             });
-//            BlogDto blogDto = blogMapper.selectById("1");
-//            Assert.assertNotNull(blogDto);
-//            show(blogDto);
-
-
         } finally {
             session.close();
         }

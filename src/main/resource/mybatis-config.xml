@@ -17,7 +17,6 @@
         </environment>
     </environments>
 
-
     <mappers>
         <mapper resource="mapper/BlogMapper.xml"/>
     </mappers>

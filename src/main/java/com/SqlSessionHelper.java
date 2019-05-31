@@ -10,6 +10,9 @@ import java.io.IOException;
 import java.io.Reader;
 import java.sql.Connection;
 
+/**
+ * @author jiahangchun
+ */
 public class SqlSessionHelper {
 
     private static SqlSessionFactory sqlSessionFactory;
@@ -45,7 +48,7 @@ public class SqlSessionHelper {
      *
      * @return
      */
-    public static SqlSession getSqlSession() {
+    static SqlSession getSqlSession() {
         return sqlSessionFactory.openSession();
     }
 }
