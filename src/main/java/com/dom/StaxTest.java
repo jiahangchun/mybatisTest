@@ -5,6 +5,7 @@ import com.sun.xml.internal.fastinfoset.stax.events.EndElementEvent;
 import com.sun.xml.internal.fastinfoset.stax.events.StartDocumentEvent;
 import com.sun.xml.internal.fastinfoset.stax.events.StartElementEvent;
 import com.sun.xml.internal.stream.events.CharacterEvent;
+import com.util.CommonUtil;
 
 import javax.xml.namespace.QName;
 import javax.xml.stream.*;
@@ -37,7 +38,7 @@ public class StaxTest {
     }
 
     public void setUp() throws Exception {
-        String path = ParseUtil.getResourcePath(PATH_NAME);
+        String path = CommonUtil.getResourcePath(PATH_NAME);
         is = new FileInputStream(new File(path));
     }
 

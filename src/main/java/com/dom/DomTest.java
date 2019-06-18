@@ -1,5 +1,6 @@
 package com.dom;
 import com.domain.People;
+import com.util.CommonUtil;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -8,10 +9,7 @@ import org.w3c.dom.NodeList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
-import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.List;
 
 /**
@@ -21,7 +19,7 @@ public class DomTest {
     private static String PATH_NAME="dom/people.xml";
 
     public static void main(String[] args) throws Exception {
-        String path=ParseUtil.getResourcePath(PATH_NAME);
+        String path= CommonUtil.getResourcePath(PATH_NAME);
         try {
             File file = new File(path);
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();

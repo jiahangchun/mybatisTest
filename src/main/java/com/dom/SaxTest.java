@@ -1,5 +1,6 @@
 package com.dom;
 
+import com.util.CommonUtil;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -18,7 +19,7 @@ public class SaxTest extends DefaultHandler {
 
     public static void main(String[] args) {
         try {
-            String path=ParseUtil.getResourcePath(PATH_NAME);
+            String path= CommonUtil.getResourcePath(PATH_NAME);
             File inputFile = new File(path);
 
             // 创建sax解析工厂
