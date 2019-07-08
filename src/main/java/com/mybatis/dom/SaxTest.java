@@ -1,4 +1,4 @@
-//package com.dom;
+//package com.mybatis.dom;
 //
 //import com.util.CommonUtil;
 //import org.xml.sax.Attributes;

@@ -1,5 +1,5 @@
-//package com.dom;
-//import com.domain.People;
+//package com.mybatis.dom;
+//import com.mybatis.domain.People;
 //import com.util.CommonUtil;
 //import org.w3c.dom.Document;
 //import org.w3c.dom.Element;

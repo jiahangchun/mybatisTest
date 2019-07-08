@@ -1,7 +1,7 @@
 //package com;
 //
-//import com.domain.BlogDO;
-//import com.mapper.BlogMapper;
+//import com.mybatis.domain.BlogDO;
+//import com.mybatis.mapper.BlogMapper;
 //import org.apache.ibatis.session.SqlSession;
 //
 //import java.util.List;

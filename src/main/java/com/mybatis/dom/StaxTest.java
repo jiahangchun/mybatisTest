@@ -1,4 +1,4 @@
-//package com.dom;
+//package com.mybatis.dom;
 //
 //import com.sun.xml.internal.fastinfoset.stax.events.EndDocumentEvent;
 //import com.sun.xml.internal.fastinfoset.stax.events.EndElementEvent;

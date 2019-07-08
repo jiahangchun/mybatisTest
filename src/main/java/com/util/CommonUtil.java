@@ -1,7 +1,5 @@
 package com.util;
 
-import com.dom.DomTest;
-
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.net.URL;
@@ -62,11 +60,23 @@ public class CommonUtil {
      * @throws IOException
      */
     public static String getResourcePath(String pathName) throws Exception {
-        Enumeration<URL> keyPath = DomTest.getClassLoader().getResources(pathName);
+        Enumeration<URL> keyPath = CommonUtil.getClassLoader().getResources(pathName);
         while (keyPath.hasMoreElements()) {
             URL url = keyPath.nextElement();
             return url.getPath();
         }
         throw new Exception("can not found resource");
+    }
+
+    /**
+     * 获取classLoader
+     * @return
+     */
+    public static ClassLoader getClassLoader() {
+        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        if (classLoader == null) {
+            classLoader = CommonUtil.class.getClassLoader();
+        }
+        return classLoader;
     }
 }

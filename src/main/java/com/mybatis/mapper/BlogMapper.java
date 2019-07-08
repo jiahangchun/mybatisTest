@@ -1,6 +1,6 @@
-//package com.mapper;
+//package com.mybatis.mapper;
 //
-//import com.domain.BlogDO;
+//import com.mybatis.domain.BlogDO;
 //
 //import java.util.List;
 //
