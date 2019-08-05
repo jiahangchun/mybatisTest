@@ -13,7 +13,7 @@ public class QuickStartServer {
                 // 设置一个协议，默认bolt
                 .setProtocol("bolt")
                 // 设置一个端口，默认12200
-                .setPort(12200)
+                .setPort(8081)
                 // 非守护线程
                 .setDaemon(false);
 
@@ -26,5 +26,6 @@ public class QuickStartServer {
                 .setServer(serverConfig);
         // 发布服务
         providerConfig.export();
+        System.out.println("server started!!!");
     }
 }

@@ -15,7 +15,7 @@ public class QuickStartClient {
                 // 指定协议
                 .setProtocol("bolt")
                 // 指定直连地址
-                .setDirectUrl("bolt://127.0.0.1:12200");
+                .setDirectUrl("bolt://127.0.0.1:8081");
         // 生成代理类
         HelloService helloService = consumerConfig.refer();
         while (true) {

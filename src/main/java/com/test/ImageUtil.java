@@ -1,4 +1,4 @@
-package com.util;
+package com.test;
 
 import net.glxn.qrgen.core.image.ImageType;
 import net.glxn.qrgen.javase.QRCode;

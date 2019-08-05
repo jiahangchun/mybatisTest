@@ -1,0 +1,8 @@
+{
+  "rpc.config.order": 0,
+  "logger.impl": "com.alipay.sofa.rpc.log.SLF4JLoggerImpl",
+  "extension.load.path": [
+    "META-INF/services/sofa-rpc/",
+    "META-INF/services/"
+  ]
+}
