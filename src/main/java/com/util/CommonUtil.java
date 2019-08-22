@@ -2,14 +2,15 @@ package com.util;
 
 import com.alipay.sofa.rpc.common.utils.ClassTypeUtils;
 import com.alipay.sofa.rpc.common.utils.DateUtils;
+import com.alipay.sofa.rpc.core.exception.SofaRpcRuntimeException;
 
-import java.io.IOException;
 import java.lang.reflect.Array;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.net.URL;
 import java.text.ParseException;
 import java.util.*;
+
+import static com.alipay.sofa.rpc.common.utils.ClassLoaderUtils.getCurrentClassLoader;
 
 /**
  * @author jiahangchun
@@ -57,7 +58,7 @@ public class CommonUtil {
      * @param type  目标类型
      * @return 目标值
      */
-    @SuppressWarnings({ "unchecked", "rawtypes" })
+    @SuppressWarnings({"unchecked", "rawtypes"})
     public static Object convert(Object value, Class<?> type) {
         if (value == null || type == null || type.isAssignableFrom(value.getClass())) {
             return value;
@@ -190,4 +191,45 @@ public class CommonUtil {
     public static boolean isNotEmpty(Object obj) {
         return !isEmpty(obj);
     }
+
+    /*********************加载**********************************************/
+
+    /**
+     * 得到当前ClassLoader，先找线程池的，找不到就找中间件所在的ClassLoader
+     *
+     * @return ClassLoader
+     */
+    public static ClassLoader getCurrentClassLoader() {
+        ClassLoader cl = Thread.currentThread().getContextClassLoader();
+        if (cl == null) {
+            cl = CommonUtil.class.getClassLoader();
+        }
+        return cl == null ? ClassLoader.getSystemClassLoader() : cl;
+    }
+
+    /**
+     * 根据类名加载Class
+     *
+     * @param className  类名
+     * @param initialize 是否初始化
+     * @return Class
+     */
+    public static Class forName(String className, boolean initialize) {
+        try {
+            return Class.forName(className, initialize, getCurrentClassLoader());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * 根据类名加载Class
+     *
+     * @param className 类名
+     * @return Class
+     */
+    public static Class forName(String className) {
+        return forName(className, true);
+    }
+
 }
