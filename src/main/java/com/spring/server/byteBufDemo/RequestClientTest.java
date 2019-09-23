@@ -1,4 +1,4 @@
-package com.spring.server.demo;
+package com.spring.server.byteBufDemo;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;

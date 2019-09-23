@@ -61,6 +61,17 @@ public class HttpUtils {
         return request;
     }
 
+    public static HttpRequestInfo genLocalSpringRequest() throws Exception {
+        String method = "GET";
+        String url = "http://127.0.0.1:8080/platform/client/eggSearch/order/detail/927145";
+        Map<String, String> heads = Maps.newHashMap();
+        heads.put("token", "23vYj%2BFBj5cmeseSE4r1sjR8XCf%2BNevPh5Sh0xzRujiH3yYuJmIJnUs%2FKqimPUV2ASSdt2Vv%2B5sPbyLo2b5IJGujHaXdPb%2BHvbYfuWycDSNCGKhMCznthqSxQCpaQx66oZ2ddv%2Bi2GBVgUgsfI7EjQ%3D%3D");
+
+        String body = "";
+        HttpRequestInfo request = RangeDownload.buildRequest(method, url, heads, body);
+        return request;
+    }
+
     /**
      * 本地
      * @return

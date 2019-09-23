@@ -1,20 +1,32 @@
-package com.spring.server.demo;
+package com.spring.server.byteBufDemo;
 
 import com.spring.server.HttpUtils;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
-public class TimeServerHandler extends ChannelInboundHandlerAdapter {
+public class TimeClientHandler extends ChannelInboundHandlerAdapter {
 
+    public Integer count=0;
+
+    @Override
+    public void channelRead(ChannelHandlerContext ctx, Object msg) {
+        ByteBuf m = (ByteBuf) msg;
+        try {
+            HttpUtils.genReadChannel(m);
+            count++;
+            System.out.println("接收请求     "+count);
+        } finally {
+            m.release();
+        }
+    }
 
     @Override
     public void channelActive(final ChannelHandlerContext ctx) throws Exception {
         Integer count = 0;
 
-        for (int i = 0; i < 1000000; i++) {
+        for (int i = 0; i < 1; i++) {
+
 //            ctx.channel().writeAndFlush(HttpUtils.genRequest());
             ByteBuf time = ctx.alloc().buffer();
             StringBuilder sb = new StringBuilder("abc");
@@ -25,17 +37,10 @@ public class TimeServerHandler extends ChannelInboundHandlerAdapter {
         }
     }
 
-    @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        HttpUtils.genReadChannel(msg);
-    }
-
 
     @Override
-
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
         cause.printStackTrace();
         ctx.close();
     }
-
 }

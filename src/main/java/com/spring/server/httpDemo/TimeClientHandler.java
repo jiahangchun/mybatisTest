@@ -1,4 +1,4 @@
-package com.spring.server.demo;
+package com.spring.server.httpDemo;
 
 import com.spring.server.HttpUtils;
 import io.netty.buffer.ByteBuf;
@@ -26,13 +26,7 @@ public class TimeClientHandler extends ChannelInboundHandlerAdapter {
         Integer count = 0;
 
         for (int i = 0; i < 1; i++) {
-
-            ctx.channel().writeAndFlush(HttpUtils.genRequest());
-//            ByteBuf time = ctx.alloc().buffer();
-//            StringBuilder sb = new StringBuilder("abc");
-//            sb.append(System.getProperty("line.separator"));
-//            time.writeBytes(sb.toString().getBytes());
-//            ctx.writeAndFlush(time);
+            ctx.channel().writeAndFlush(HttpUtils.genLocalSpringRequest());
             System.out.println("发送请求。。。。" + count++);
         }
     }

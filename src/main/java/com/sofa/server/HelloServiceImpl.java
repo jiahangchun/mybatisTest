@@ -3,7 +3,7 @@ package com.sofa.server;
 import java.math.BigDecimal;
 
 /**
- * Quick Start demo implement
+ * Quick Start byteBufDemo implement
  * @author jiahangchun
  */
 public class HelloServiceImpl implements HelloService {

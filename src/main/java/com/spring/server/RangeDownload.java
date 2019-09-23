@@ -187,7 +187,7 @@ public class RangeDownload {
         headsInfo.add("Host", u.getHost());
         headsInfo.add("Connection", "keep-alive");
         headsInfo.add("User-Agent", "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.75 Safari/537.36");
-        headsInfo.add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8");
+        headsInfo.add("Accept", "application/json,text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8");
         headsInfo.add("Referer", u.getHost());
         if (heads != null) {
             for (Map.Entry<String, String> entry : heads.entrySet()) {
