@@ -12,6 +12,7 @@ public class TimeClientHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
         ByteBuf m = (ByteBuf) msg;
+        System.out.println("read msg");
         try {
             HttpUtils.genReadChannel(m);
             count++;
