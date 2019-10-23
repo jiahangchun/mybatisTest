@@ -113,6 +113,29 @@
             <artifactId>transport</artifactId>
             <version>5.6.10</version>
         </dependency>
+        <!--image thumbnailator-->
+        <dependency>
+            <groupId>net.coobird</groupId>
+            <artifactId>thumbnailator</artifactId>
+            <version>0.4.8</version>
+        </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/org.redisson/redisson -->
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson</artifactId>
+            <version>3.5.0</version>
+        </dependency>
+
+        <!--gif处理-->
+        <!-- https://mvnrepository.com/artifact/org.freemarker/freemarker -->
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.29</version>
+        </dependency>
+
 
     </dependencies>
 </project>

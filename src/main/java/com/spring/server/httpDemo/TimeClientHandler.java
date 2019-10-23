@@ -1,34 +1,37 @@
 package com.spring.server.httpDemo;
 
+import com.alipay.sofa.rpc.common.utils.JSONUtils;
+import com.spring.server.HttpRequestInfo;
 import com.spring.server.HttpUtils;
-import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
+/**
+ * @author jiahangchun
+ */
 public class TimeClientHandler extends ChannelInboundHandlerAdapter {
 
-    public Integer count=0;
+
+    private AtomicInteger receiveCount = new AtomicInteger(0);
+    private AtomicInteger sendCount = new AtomicInteger(0);
 
     @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg) {
-        ByteBuf m = (ByteBuf) msg;
-        System.out.println("read msg");
-        try {
-            HttpUtils.genReadChannel(m);
-            count++;
-            System.out.println("接收请求     "+count);
-        } finally {
-            m.release();
-        }
+    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+        System.out.println("read msg " + receiveCount.incrementAndGet());
+        HttpUtils.genReadChannel(msg);
+//        channelActive(ctx);
     }
 
     @Override
     public void channelActive(final ChannelHandlerContext ctx) throws Exception {
-        Integer count = 0;
-
+//        HttpRequestInfo httpRequestInfo = HttpUtils.genLocalSpringRequest();
+//        String httpRequestInfoStr = JSONUtils.toJSONString(httpRequestInfo);
+        String httpRequestInfoStr=HttpUtils.genHttpRequestStr();
         for (int i = 0; i < 1; i++) {
-            ctx.channel().writeAndFlush(HttpUtils.genLocalSpringRequest());
-            System.out.println("发送请求。。。。" + count++);
+            ctx.channel().writeAndFlush(httpRequestInfoStr);
+            System.out.println("发送请求。。。。" + (sendCount.incrementAndGet()) + "\r\n" + httpRequestInfoStr);
         }
     }
 

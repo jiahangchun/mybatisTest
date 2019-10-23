@@ -37,6 +37,8 @@ public class HttpUtils {
                 bf.readBytes(byteArray);
                 String result = new String(byteArray);
                 System.out.println(result);
+            }else if(msg instanceof String){
+                System.out.println(msg);
             } else {
                 System.out.println(" can not found type.");
             }
@@ -63,13 +65,24 @@ public class HttpUtils {
 
     public static HttpRequestInfo genLocalSpringRequest() throws Exception {
         String method = "GET";
-        String url = "http://127.0.0.1:8080/platform/client/eggSearch/order/detail/927145";
+        String url = "http://localhost:8080/platform/tms/stockInLoading/list";
         Map<String, String> heads = Maps.newHashMap();
-        heads.put("token", "23vYj%2BFBj5cmeseSE4r1sjR8XCf%2BNevPh5Sh0xzRujiH3yYuJmIJnUs%2FKqimPUV2ASSdt2Vv%2B5sPbyLo2b5IJGujHaXdPb%2BHvbYfuWycDSNCGKhMCznthqSxQCpaQx66oZ2ddv%2Bi2GBVgUgsfI7EjQ%3D%3D");
+        heads.put("token", "9CpHnCvkUx3tlzwFSpg%2B%2BZGLPqOl6P%2Bqzr4WhLW57X4uu52vFQvi1edIsVR%2BALF0%2Bb%2BVNwRyQdqocpdxPW42M5fpWVaBUalIEMYGWPR7hzrW4wf0ouQUBS%2F6MIFr2t5agC4iiBie3fdPyuUAyTwzzw%3D%3D");
 
         String body = "";
         HttpRequestInfo request = RangeDownload.buildRequest(method, url, heads, body);
         return request;
+    }
+
+    /**
+     * 上面的HttpRequestInfo好像不太对，说是header存在问题
+     * @return
+     */
+    public static String genHttpRequestStr(){
+        String str="{\"version\":\"HTTP_1_1\",\"method\":\"GET\",\"uri\":\"/platform/tms/stockInLoading/list\",\"headers\":{\"Host\":\"localhost\",\"Connection\":\"keep-alive\",\"User-Agent\":\"Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.75 Safari/537.36\",\"Accept\":\"application/json,text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8\",\"Referer\":\"localhost\",\"token\":\"9CpHnCvkUx3tlzwFSpg%2B%2BZGLPqOl6P%2Bqzr4WhLW57X4uu52vFQvi1edIsVR%2BALF0%2Bb%2BVNwRyQdqocpdxPW42M5fpWVaBUalIEMYGWPR7hzrW4wf0ouQUBS%2F6MIFr2t5agC4iiBie3fdPyuUAyTwzzw%3D%3D\"},\"content\":null}\n";
+
+//        String str="{\"requestProto\":{\"host\":\"localhost\",\"port\":8080,\"ssl\":false},\"version\":\"HTTP_1_1\",\"method\":\"GET\",\"uri\":\"/platform/tms/stockInLoading/list\",\"headers\":{\"Host\":\"localhost\",\"Connection\":\"keep-alive\",\"User-Agent\":\"Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.75 Safari/537.36\",\"Accept\":\"application/json,text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8\",\"Referer\":\"localhost\",\"token\":\"9CpHnCvkUx3tlzwFSpg%2B%2BZGLPqOl6P%2Bqzr4WhLW57X4uu52vFQvi1edIsVR%2BALF0%2Bb%2BVNwRyQdqocpdxPW42M5fpWVaBUalIEMYGWPR7hzrW4wf0ouQUBS%2F6MIFr2t5agC4iiBie3fdPyuUAyTwzzw%3D%3D\"},\"content\":null}\n";
+        return str;
     }
 
     /**
