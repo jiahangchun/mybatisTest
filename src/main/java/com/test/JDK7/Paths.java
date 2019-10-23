@@ -46,8 +46,18 @@ public class Paths {
      * 生成字幕文件
      * ass 文件指的是 视频字幕文件： http://www.360doc.com/content/15/0808/11/19994993_490288265.shtml
      * [Script Info] PlayResX & PlayResY 描述字幕的范围 。 至于其他的都只是一些基本信息，可以删除的
-     *
-     *
+     * [V4+ Styles] 主要用于描述 字体信息
+     * [Events] 字幕的配置：格式如 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+     * Layer    一般都是0
+     * Start    字幕开始时间
+     * End      字幕结束时间
+     * Style    字体
+     * Name     没什么作用的，相当于备注
+     * MarginL  针对V4+ Styles]的MarginL再次定义 0000表示使用默认值
+     * MarginR  同上
+     * MarginV  同上
+     * Effect   字幕出现的方式 如何滚动出现
+     * Text     字幕
      *
      * @return
      * @throws IOException
@@ -59,7 +69,7 @@ public class Paths {
         cfg.setDirectoryForTemplateLoading(java.nio.file.Paths.get("/Users/jiahangchun/IdeaProjects/bak/mybatisTest").resolve("template").toFile());
         Map<String, Object> root = new HashMap<>();
         Map<String, String> mx = new HashMap<>();
-        List<String> words = Lists.newArrayList("0", "1", "2", "3", "4", "5", "6", "7", "8");
+        List<String> words = Lists.newArrayList("啦啦啦啦啦，我是字幕", "1", "2", "3", "4", "5", "6", "7", "8");
         for (int i = 0; i < words.size(); i++) {
             mx.put("sentences" + i, words.get(i));
         }
