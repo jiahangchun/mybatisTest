@@ -94,57 +94,34 @@ public class Solution {
     }
 
 
+    public String longestPalindrome(String s) {
+        if(s==null || s.length()<=0){
+            return "";
+        }
+        int start=0,end=0;
+        for(int i=0;i<s.length();i++){
+            int a=expendAroundCenter(s,i,i);
+            int b=expendAroundCenter(s,i,i+1);
+            int len=Integer.max(a,b);
+            if(len>(end-start)){
+                start = i - (len - 1) / 2;
+                end = i + len / 2;
+            }
+        }
+        return s.substring(start,end+1);
+    }
+
+    private int expendAroundCenter(String s,int left,int right){
+        int L=left,R=right;
+        while(L>=0 && R<s.length() && s.charAt(L)==s.charAt(R)){
+            L--;
+            R++;
+        }
+        return R-L-1;
+    }
+
     public static void main(String[] args) {
-
-
-        ListNode a1 = new ListNode(2);
-        ListNode a2 = new ListNode(4);
-        ListNode a3 = new ListNode(3);
-        a1.next = a2;
-        a2.next = a3;
-
-        ListNode b1 = new ListNode(5);
-        ListNode b2 = new ListNode(6);
-        ListNode b3 = new ListNode(4);
-        b1.next = b2;
-        b2.next = b3;
-
-        System.out.println(JSONUtils.toJSONString(new Solution().addTwoNumbers(a1, b1)));
-//
-//        ListNode c = new ListNode(5);
-//        ListNode d = new ListNode(5);
-//
-//        System.out.println(JSONUtils.toJSONString(new Solution().addTwoNumbers(c, d)));
-
-//        ListNode f = new ListNode(9);
-//        ListNode h = new ListNode(1);
-//        ListNode h1 = new ListNode(9);
-//        ListNode h2 = new ListNode(9);
-//        ListNode h3 = new ListNode(9);
-//        ListNode h4 = new ListNode(9);
-//        ListNode h5 = new ListNode(9);
-//        ListNode h6 = new ListNode(9);
-//        ListNode h7 = new ListNode(9);
-//        ListNode h8 = new ListNode(9);
-//        ListNode h9 = new ListNode(9);
-//        h.next=h1;
-//        h1.next=h2;
-//        h2.next=h3;
-//        h3.next=h4;
-//        h4.next=h5;
-//        h5.next=h6;
-//        h6.next=h7;
-//        h7.next=h8;
-//        h8.next=h9;
-//
-//        System.out.println(JSONUtils.toJSONString(new Solution().addTwoNumbers(f, h)));
-
-
-        ListNode c = new ListNode(1);
-        ListNode c1 = new ListNode(8);
-        c.next=c1;
-        ListNode d = new ListNode(0);
-
-        System.out.println(JSONUtils.toJSONString(new Solution().addTwoNumbers(c, d)));
+        String subStr=new Solution().longestPalindrome("babad");
+        System.out.println(subStr);
     }
 }

@@ -137,13 +137,13 @@
         </dependency>
 
         <!--官网能下载的，但是很慢。windows可以参考https://blog.csdn.net/qq_41175905/article/details/80560429 -->
-        <dependency>
-            <groupId>org.opencv</groupId>
-            <artifactId>opencv</artifactId>
-            <version>3.4.1</version>
-            <systemPath>F:/opencv/opencv/build/java/opencv-341.jar</systemPath>
-            <scope>system</scope>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.opencv</groupId>-->
+<!--            <artifactId>opencv</artifactId>-->
+<!--            <version>3.4.1</version>-->
+<!--            <systemPath>F:/opencv/opencv/build/java/opencv-341.jar</systemPath>-->
+<!--            <scope>system</scope>-->
+<!--        </dependency>-->
 
 
     </dependencies>
