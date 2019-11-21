@@ -123,13 +123,13 @@ public class Solution {
 
 
     public int reverse(int x) {
-        int rev = 0,a=0;
+        int rev = 0, a = 0;
         while (Math.abs(x) > 0) {
-            if( Math.abs(rev) <= Integer.MAX_VALUE/10){
+            if (Math.abs(rev) <= Integer.MAX_VALUE / 10) {
                 a = x % 10;
                 x /= 10;
                 rev = rev * 10 + a;
-            }else{
+            } else {
                 return 0;
             }
 
@@ -137,10 +137,35 @@ public class Solution {
         return rev;
     }
 
+    public boolean isPalindrome(int x) {
+        if (x<0) {
+            return Boolean.FALSE;
+        }
+        int rev = 0, a = 0, origin = x;
+        while (x > 0) {
+            if (Math.abs(rev) <= Integer.MAX_VALUE / 10) {
+                a = x % 10;
+                x /= 10;
+                rev = rev * 10 + a;
+            } else {
+                return Boolean.FALSE;
+            }
+        }
+        if (rev == 0) {
+            return Boolean.TRUE;
+        }
+        if (origin / rev == 1) {
+            return Boolean.TRUE;
+        }
+        return Boolean.FALSE;
+    }
+
 
     public static void main(String[] args) {
-        int subStr = new Solution().reverse(1534236469);
+//        Boolean subStr = new Solution().isPalindrome(-2147483648);
+//        System.out.println(subStr);
         System.out.println(Integer.MAX_VALUE);
-        System.out.println(subStr);
+        System.out.println(Integer.MIN_VALUE);
+        System.out.println(Math.abs(-2147483648));
     }
 }
