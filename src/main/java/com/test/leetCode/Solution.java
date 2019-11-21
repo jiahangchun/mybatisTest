@@ -1,6 +1,7 @@
 package com.test.leetCode;
 
 import com.alipay.sofa.rpc.common.utils.JSONUtils;
+import io.swagger.models.auth.In;
 
 import java.util.*;
 
@@ -95,33 +96,51 @@ public class Solution {
 
 
     public String longestPalindrome(String s) {
-        if(s==null || s.length()<=0){
+        if (s == null || s.length() <= 0) {
             return "";
         }
-        int start=0,end=0;
-        for(int i=0;i<s.length();i++){
-            int a=expendAroundCenter(s,i,i);
-            int b=expendAroundCenter(s,i,i+1);
-            int len=Integer.max(a,b);
-            if(len>(end-start)){
+        int start = 0, end = 0;
+        for (int i = 0; i < s.length(); i++) {
+            int a = expendAroundCenter(s, i, i);
+            int b = expendAroundCenter(s, i, i + 1);
+            int len = Integer.max(a, b);
+            if (len > (end - start)) {
                 start = i - (len - 1) / 2;
                 end = i + len / 2;
             }
         }
-        return s.substring(start,end+1);
+        return s.substring(start, end + 1);
     }
 
-    private int expendAroundCenter(String s,int left,int right){
-        int L=left,R=right;
-        while(L>=0 && R<s.length() && s.charAt(L)==s.charAt(R)){
+    private int expendAroundCenter(String s, int left, int right) {
+        int L = left, R = right;
+        while (L >= 0 && R < s.length() && s.charAt(L) == s.charAt(R)) {
             L--;
             R++;
         }
-        return R-L-1;
+        return R - L - 1;
     }
 
+
+    public int reverse(int x) {
+        int rev = 0,a=0;
+        while (Math.abs(x) > 0) {
+            if( Math.abs(rev) <= Integer.MAX_VALUE/10){
+                a = x % 10;
+                x /= 10;
+                rev = rev * 10 + a;
+            }else{
+                return 0;
+            }
+
+        }
+        return rev;
+    }
+
+
     public static void main(String[] args) {
-        String subStr=new Solution().longestPalindrome("babad");
+        int subStr = new Solution().reverse(1534236469);
+        System.out.println(Integer.MAX_VALUE);
         System.out.println(subStr);
     }
 }
