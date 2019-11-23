@@ -138,7 +138,7 @@ public class Solution {
     }
 
     public boolean isPalindrome(int x) {
-        if (x<0) {
+        if (x < 0) {
             return Boolean.FALSE;
         }
         int rev = 0, a = 0, origin = x;
@@ -161,9 +161,58 @@ public class Solution {
     }
 
 
+    public int romanToInt(String s) {
+        if(s==null || s.length()<=0){
+            return 0;
+        }
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < s.length(); i++) {
+            String valueStr = String.valueOf(s.charAt(i));
+            list.add(convert(valueStr));
+        }
+        list.add(0);
+        int val=0;
+        for(int k=0;k<list.size()-1;k++){
+            int cur=list.get(k);
+            int next=list.get(k+1);
+            if(cur<next){
+                val=val-cur+next;
+                k++;
+            }else{
+                val+=cur;
+            }
+        }
+
+
+        return val;
+    }
+
+    private int convert(String lnumber) {
+        switch (lnumber) {
+            case "I":
+                return 1;
+            case "V":
+                return 5;
+            case "X":
+                return 10;
+            case "L":
+                return 50;
+            case "C":
+                return 100;
+            case "D":
+                return 500;
+            case "M":
+                return 1000;
+            default:
+                return 0;
+        }
+    }
+
+
     public static void main(String[] args) {
-//        Boolean subStr = new Solution().isPalindrome(-2147483648);
-//        System.out.println(subStr);
+        Integer value = new Solution().romanToInt("MCMXCIV");
+        System.out.println(value);
+
         System.out.println(Integer.MAX_VALUE);
         System.out.println(Integer.MIN_VALUE);
         System.out.println(Math.abs(-2147483648));
