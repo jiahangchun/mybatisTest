@@ -162,7 +162,7 @@ public class Solution {
 
 
     public int romanToInt(String s) {
-        if(s==null || s.length()<=0){
+        if (s == null || s.length() <= 0) {
             return 0;
         }
         List<Integer> list = new ArrayList<>();
@@ -171,15 +171,15 @@ public class Solution {
             list.add(convert(valueStr));
         }
         list.add(0);
-        int val=0;
-        for(int k=0;k<list.size()-1;k++){
-            int cur=list.get(k);
-            int next=list.get(k+1);
-            if(cur<next){
-                val=val-cur+next;
+        int val = 0;
+        for (int k = 0; k < list.size() - 1; k++) {
+            int cur = list.get(k);
+            int next = list.get(k + 1);
+            if (cur < next) {
+                val = val - cur + next;
                 k++;
-            }else{
-                val+=cur;
+            } else {
+                val += cur;
             }
         }
 
@@ -209,8 +209,41 @@ public class Solution {
     }
 
 
+    public String longestCommonPrefix(String[] strs) {
+        if (null == strs || strs.length == 0) {
+            return "";
+        }
+        String prefix = strs[0];
+        if (strs.length == 1) {
+            return prefix;
+        }
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < prefix.length(); i++) {
+            char prefixT = prefix.charAt(i);
+            char temp = 0;
+            for (int j = 1; j < strs.length; j++) {
+                char t;
+                try {
+                    t = strs[j].charAt(i);
+                } catch (Exception e) {
+                    return sb.toString();
+                }
+                if (prefixT == t) {
+                    temp = t;
+                } else {
+                    return sb.toString();
+                }
+            }
+            if (temp != 0) {
+                sb.append(temp);
+            }
+        }
+        return sb.toString();
+    }
+
     public static void main(String[] args) {
-        Integer value = new Solution().romanToInt("MCMXCIV");
+        String[] a = {"aca", "cba"};
+        String value = new Solution().longestCommonPrefix(a);
         System.out.println(value);
 
         System.out.println(Integer.MAX_VALUE);
