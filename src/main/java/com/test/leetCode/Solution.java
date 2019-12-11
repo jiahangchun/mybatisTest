@@ -1,8 +1,11 @@
 package com.test.leetCode;
 
+import com.alipay.sofa.rpc.common.json.JSON;
 import com.google.common.collect.Lists;
+import org.apache.logging.log4j.core.util.JsonUtils;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author jiahangchun
@@ -295,10 +298,76 @@ public class Solution {
         }
     }
 
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        //基础参数校验
+        if (l1 == null) {
+            return l2;
+        }
+        if (l2 == null) {
+            return l1;
+        }
+
+        //赋值操作
+        List<Integer> list=new ArrayList<>();
+        pushValue(list,l1);
+        pushValue(list,l2);
+
+        //排序
+        list.sort(Comparator.comparing(Integer::intValue));
+
+        //组合参数
+        List<ListNode> listNodes=list.stream().map(Solution::convert2Obj).collect(Collectors.toList());
+
+
+        return combine(listNodes);
+    }
+
+    public static ListNode convert2Obj(Integer val) {
+        return new ListNode(val);
+    }
+
+    public ListNode combine(List<ListNode> list){
+        ListNode firstNode=null,latestNode=null;
+        for(int i=0;i<list.size();i++){
+            ListNode tmp=list.get(i);
+            if(firstNode==null){
+                firstNode=tmp;
+                latestNode=tmp;
+            }else {
+                latestNode.next=tmp;
+                latestNode=tmp;
+            }
+        }
+        return firstNode;
+    }
+
+    public void pushValue(List<Integer> list,ListNode l1){
+        ListNode temp=l1;
+        while(temp!=null){
+            list.add(temp.val);
+            ListNode next=temp.next;
+            temp=next;
+        }
+    }
+
 
     public static void main(String[] args) {
-        Boolean value = new Solution().isValid("]");
-        System.out.println(value);
+        ListNode l11=new ListNode(1);
+        ListNode l12=new ListNode(2);
+        ListNode l13=new ListNode(4);
+        l11.next=l12;
+        l12.next=l13;
+
+        ListNode l21=new ListNode(1);
+        ListNode l22=new ListNode(3);
+        ListNode l23=new ListNode(4);
+        l21.next=l22;
+        l22.next=l23;
+
+
+
+        ListNode value = new Solution().mergeTwoLists(l11,l21);
+        System.out.println(JSON.toJSONString(value));
 
         System.out.println(Integer.MAX_VALUE);
         System.out.println(Integer.MIN_VALUE);
