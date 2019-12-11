@@ -1,7 +1,6 @@
 package com.test.leetCode;
 
-import com.alipay.sofa.rpc.common.utils.JSONUtils;
-import io.swagger.models.auth.In;
+import com.google.common.collect.Lists;
 
 import java.util.*;
 
@@ -241,9 +240,64 @@ public class Solution {
         return sb.toString();
     }
 
+
+    public boolean isValid(String s) {
+        if (null == s || s.length() <= 0) {
+            return true;
+        }
+        List<String> leftTarget = new ArrayList<>(),
+                rightTarget = new ArrayList<>();
+        leftTarget.add("[");
+        leftTarget.add("{");
+        leftTarget.add("(");
+
+        rightTarget.add("]");
+        rightTarget.add("}");
+        rightTarget.add(")");
+
+
+        Stack<String> stringStack = new Stack<>();
+        for (int i = 0; i < s.length(); i++) {
+            String currentChar = String.valueOf(s.charAt(i));
+            if (rightTarget.indexOf(currentChar) >= 0) {
+                if (stringStack.size() <= 0) {
+                    return false;
+                }
+                String beforeChar = stringStack.pop();
+                if (!beforeChar.equals(reverse(currentChar))) {
+                    return false;
+                }
+            } else {
+                stringStack.push(currentChar);
+            }
+        }
+        boolean remainValue = stringStack.size() > 0;
+        return !remainValue;
+    }
+
+
+    private String reverse(String n) {
+        switch (n) {
+            case "{":
+                return "}";
+            case "}":
+                return "{";
+            case "[":
+                return "]";
+            case "]":
+                return "[";
+            case "(":
+                return ")";
+            case ")":
+                return "(";
+            default:
+                return "";
+        }
+    }
+
+
     public static void main(String[] args) {
-        String[] a = {"aca", "cba"};
-        String value = new Solution().longestCommonPrefix(a);
+        Boolean value = new Solution().isValid("]");
         System.out.println(value);
 
         System.out.println(Integer.MAX_VALUE);
