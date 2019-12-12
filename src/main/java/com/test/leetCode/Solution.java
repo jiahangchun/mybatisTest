@@ -408,7 +408,7 @@ public class Solution {
         if (needle.length() <= 0) {
             return 0;
         }
-        if(haystack.equals(needle)){
+        if (haystack.equals(needle)) {
             return 0;
         }
         for (int i = 0; i < haystack.length(); i++) {
@@ -430,10 +430,28 @@ public class Solution {
     }
 
 
+    public int searchInsert(int[] nums, int target) {
+        if(nums==null){
+            return 0;
+        }
+
+        for(int i=0;i<nums.length;i++){
+            int value=nums[i];
+            if(value>=target){
+                return i>0?i:0;
+            }
+            if(i==nums.length-1){
+                return nums.length;
+            }
+        }
+        return 0;
+    }
+
+
     public static void main(String[] args) {
 
-
-        int removeDuplicates = new Solution().strStr("mississippi", "issi");
+        int[] nums=new int[]{1,3,5,6};
+        int removeDuplicates = new Solution().searchInsert(nums,0);
         System.out.println(JSON.toJSONString(removeDuplicates) + "+++++");
 
         System.out.println(Integer.MAX_VALUE);
