@@ -373,13 +373,41 @@ public class Solution {
         return count;
     }
 
+    public int removeElement(int[] nums, int val) {
+        if(nums==null){
+            return 0;
+        }
+        for(int i=0;i<nums.length;i++){
+            int tmp=nums[i];
+            if(val==tmp){
+               for(int j=i+1;j<nums.length;j++){
+                   if(nums[j]==val){
+                   }else{
+                       nums[i]=nums[j];
+                       nums[j]=val;
+                       break;
+                   }
+               }
+            }
+        }
+
+        int count=0;
+        for(int k=0;k<nums.length;k++){
+            int tmp=nums[k];
+            if(val!=tmp){
+                count++;
+            }
+        }
+        return count;
+    }
+
 
     public static void main(String[] args) {
 
 
-        int[] nums=new int[]{0,0,1,1,1,2,2,3,3,4};
-        int removeDuplicates= new Solution().removeDuplicates(nums);
-        System.out.println(JSON.toJSONString(removeDuplicates));
+        int[] nums=new int[]{0,1,2,2,3,0,4,2};
+        int removeDuplicates= new Solution().removeElement(nums,2);
+        System.out.println(JSON.toJSONString(removeDuplicates)+"+++++"+JSON.toJSONString(nums));
 
         System.out.println(Integer.MAX_VALUE);
         System.out.println(Integer.MIN_VALUE);
