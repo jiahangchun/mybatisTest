@@ -2,6 +2,8 @@ package com.test.leetCode;
 
 import com.alipay.sofa.rpc.common.json.JSON;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import io.swagger.models.auth.In;
 import org.apache.logging.log4j.core.util.JsonUtils;
 
 import java.util.*;
@@ -431,27 +433,59 @@ public class Solution {
 
 
     public int searchInsert(int[] nums, int target) {
-        if(nums==null){
+        if (nums == null) {
             return 0;
         }
 
-        for(int i=0;i<nums.length;i++){
-            int value=nums[i];
-            if(value>=target){
-                return i>0?i:0;
+        for (int i = 0; i < nums.length; i++) {
+            int value = nums[i];
+            if (value >= target) {
+                return i > 0 ? i : 0;
             }
-            if(i==nums.length-1){
+            if (i == nums.length - 1) {
                 return nums.length;
             }
         }
         return 0;
     }
 
+    public String countAndSay(int n) {
+        if (n == 1) {
+            return "1";
+        }
+        String preVal = countAndSay(n - 1);
+        List<Integer> sortStr = new ArrayList<>();
+        Map<Integer, Integer/*list.index,count*/> map = new HashMap<>();
+        for (int i = 0; i < preVal.length(); i++) {
+            String tmpStr = String.valueOf(preVal.charAt(i));
+            Integer tmp = Integer.valueOf(tmpStr);
+            sortStr.add(tmp);
+            int count = 0;
+            for (int j = i; j < preVal.length(); j++) {
+                String jTmpStr = String.valueOf(preVal.charAt(j));
+                Integer jTmp = Integer.valueOf(jTmpStr);
+                if (!tmp.equals(jTmp)) {
+                    break;
+                }
+                count++;
+                i = j;
+            }
+            map.put(sortStr.size()-1, count);
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (int k = 0; k < sortStr.size(); k++) {
+            Integer cur = sortStr.get(k);
+            Integer count = map.get(k);
+            sb.append(count + "" + cur);
+        }
+        return sb.toString();
+    }
+
 
     public static void main(String[] args) {
 
-        int[] nums=new int[]{1,3,5,6};
-        int removeDuplicates = new Solution().searchInsert(nums,0);
+        String removeDuplicates = new Solution().countAndSay(5);
         System.out.println(JSON.toJSONString(removeDuplicates) + "+++++");
 
         System.out.println(Integer.MAX_VALUE);
