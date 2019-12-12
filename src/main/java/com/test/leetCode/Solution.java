@@ -470,7 +470,7 @@ public class Solution {
                 count++;
                 i = j;
             }
-            map.put(sortStr.size()-1, count);
+            map.put(sortStr.size() - 1, count);
         }
 
         StringBuilder sb = new StringBuilder();
@@ -483,9 +483,27 @@ public class Solution {
     }
 
 
-    public static void main(String[] args) {
+    public int maxSubArray(int[] nums) {
+        if (nums == null || nums.length <= 0) {
+            return 0;
+        }
+        int sum = nums[0], ans = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            int num = nums[i];
+            if (sum > 0) {
+                sum += num;
+            } else {
+                sum = num;
+            }
+            ans = Math.max(ans, sum);
+        }
+        return ans;
+    }
 
-        String removeDuplicates = new Solution().countAndSay(5);
+
+    public static void main(String[] args) {
+        int[] nums = new int[]{-1};
+        int removeDuplicates = new Solution().maxSubArray(nums);
         System.out.println(JSON.toJSONString(removeDuplicates) + "+++++");
 
         System.out.println(Integer.MAX_VALUE);
