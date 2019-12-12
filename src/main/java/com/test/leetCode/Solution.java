@@ -367,47 +367,74 @@ public class Solution {
             if (leftVal != rightVal) {
                 count++;
                 i++;
-                nums[i]=rightVal;
+                nums[i] = rightVal;
             }
         }
         return count;
     }
 
     public int removeElement(int[] nums, int val) {
-        if(nums==null){
+        if (nums == null) {
             return 0;
         }
-        for(int i=0;i<nums.length;i++){
-            int tmp=nums[i];
-            if(val==tmp){
-               for(int j=i+1;j<nums.length;j++){
-                   if(nums[j]==val){
-                   }else{
-                       nums[i]=nums[j];
-                       nums[j]=val;
-                       break;
-                   }
-               }
+        for (int i = 0; i < nums.length; i++) {
+            int tmp = nums[i];
+            if (val == tmp) {
+                for (int j = i + 1; j < nums.length; j++) {
+                    if (nums[j] == val) {
+                    } else {
+                        nums[i] = nums[j];
+                        nums[j] = val;
+                        break;
+                    }
+                }
             }
         }
 
-        int count=0;
-        for(int k=0;k<nums.length;k++){
-            int tmp=nums[k];
-            if(val!=tmp){
+        int count = 0;
+        for (int k = 0; k < nums.length; k++) {
+            int tmp = nums[k];
+            if (val != tmp) {
                 count++;
             }
         }
         return count;
     }
 
+    public int strStr(String haystack, String needle) {
+        if (haystack == null || needle == null) {
+            return 0;
+        }
+        if (needle.length() <= 0) {
+            return 0;
+        }
+        if(haystack.equals(needle)){
+            return 0;
+        }
+        for (int i = 0; i < haystack.length(); i++) {
+            int tmp = i;
+            for (int j = 0; j < needle.length(); j++) {
+                if (tmp >= haystack.length()) {
+                    break;
+                }
+                if (haystack.charAt(tmp) != needle.charAt(j)) {
+                    break;
+                }
+                tmp++;
+                if (j == needle.length() - 1) {
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
+
 
     public static void main(String[] args) {
 
 
-        int[] nums=new int[]{0,1,2,2,3,0,4,2};
-        int removeDuplicates= new Solution().removeElement(nums,2);
-        System.out.println(JSON.toJSONString(removeDuplicates)+"+++++"+JSON.toJSONString(nums));
+        int removeDuplicates = new Solution().strStr("mississippi", "issi");
+        System.out.println(JSON.toJSONString(removeDuplicates) + "+++++");
 
         System.out.println(Integer.MAX_VALUE);
         System.out.println(Integer.MIN_VALUE);
