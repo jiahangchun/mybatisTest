@@ -500,11 +500,28 @@ public class Solution {
         return ans;
     }
 
+    public int lengthOfLastWord(String s) {
+        if (s == null || s.length() <= 0) {
+            return 0;
+        }
+        String[] words = s.split(" ");
+        if (words.length <= 0) {
+            return 0;
+        }
+        String lastWord = words[words.length - 1];
+        if (null == lastWord) {
+            return 0;
+        }
+        if (lastWord.length() <= 0) {
+            return 0;
+        }
+        return lastWord.length();
+    }
+
 
     public static void main(String[] args) {
-        int[] nums = new int[]{-1};
-        int removeDuplicates = new Solution().maxSubArray(nums);
-        System.out.println(JSON.toJSONString(removeDuplicates) + "+++++");
+        int removeDuplicates = new Solution().lengthOfLastWord(" ");
+        System.out.println(JSON.toJSONString(removeDuplicates) + "++ +++");
 
         System.out.println(Integer.MAX_VALUE);
         System.out.println(Integer.MIN_VALUE);
