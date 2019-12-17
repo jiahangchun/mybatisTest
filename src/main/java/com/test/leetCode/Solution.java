@@ -559,11 +559,61 @@ public class Solution {
         return result;
     }
 
+    public String addBinary(String a, String b) {
+        if (a == null) {
+            return b;
+        }
+        if (b == null) {
+            return a;
+        }
+        int alen = a.length(), blen = b.length();
+        int max = Math.max(alen, blen);
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; max - alen > 0 && i < max - alen; i++) {
+            sb.append("0");
+        }
+        a = sb.toString() + a;
+
+        StringBuilder bBuilder = new StringBuilder();
+        for (int i = 0; max - blen > 0 && i < max - blen; i++) {
+            bBuilder.append("0");
+        }
+        b = bBuilder.toString() + b;
+
+
+        int carry = 0;
+        List<String> resultList = new ArrayList<>();
+        for (int k = b.length() - 1; k >= 0; k--) {
+            int resultIndex = (a.charAt(k) - '0' + b.charAt(k) - '0') + carry;
+            if (resultIndex <= 1) {
+                carry = 0;
+            } else {
+                carry = resultIndex / 2;
+                resultIndex = resultIndex % 2;
+            }
+            resultList.add(resultIndex + "");
+        }
+        if (carry != 0) {
+            resultList.add("1");
+        }
+
+        String result = "";
+        if (null != resultList) {
+            Collections.reverse(resultList);
+            result = resultList.stream().reduce((i, j) -> i + "" + j).orElse("");
+        }
+
+        return result;
+    }
+
 
     public static void main(String[] args) {
-        int[] param = new int[]{9};
-        int[] result = new Solution().plusOne(param);
-        System.out.println(JSON.toJSONString(result) + "++ +++");
+//        String result = new Solution().addBinary("10100000100100110110010000010101111011011001101110111111111101000000101111001110001111100001101",
+//                "110101001011101110001111100110001010100001101011101010000011011011001011101111001100000011011110011");
+//        String result2 = new Solution().addBinary("1010", "1011");
+        String result3 = new Solution().addBinary("11", "1");
+        System.out.println(JSON.toJSONString("++++++++" + result3));
 
         System.out.println(Integer.MAX_VALUE);
         System.out.println(Integer.MIN_VALUE);
