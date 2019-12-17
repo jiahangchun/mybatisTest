@@ -518,10 +518,52 @@ public class Solution {
         return lastWord.length();
     }
 
+    public int[] plusOne(int[] digits) {
+        if (null == digits) {
+            return null;
+        }
+        Stack<Integer> stack = new Stack<>();
+        for (int i = 0; i < digits.length; i++) {
+            stack.add(digits[i]);
+        }
+        int carry = 0;
+        List<Integer> newList = new ArrayList<>();
+        for (int k = 0; !stack.isEmpty(); k++) {
+            Integer index = stack.pop();
+            //原数字进位
+            index += carry;
+            //业务逻辑+1
+            if (k == 0) {
+                index++;
+            }
+            carry = index / 10;
+            int rest = index % 10;
+            newList.add(rest);
+        }
+
+        int[] result = null;
+        if (carry == 0) {
+            result = new int[digits.length];
+        } else {
+            result = new int[digits.length + 1];
+        }
+        int index = 0;
+        if (carry != 0) {
+            result[index] = carry;
+            index++;
+        }
+        for (int j = newList.size() - 1; j >= 0; j--) {
+            result[index] = newList.get(j);
+            index++;
+        }
+        return result;
+    }
+
 
     public static void main(String[] args) {
-        int removeDuplicates = new Solution().lengthOfLastWord(" ");
-        System.out.println(JSON.toJSONString(removeDuplicates) + "++ +++");
+        int[] param = new int[]{9};
+        int[] result = new Solution().plusOne(param);
+        System.out.println(JSON.toJSONString(result) + "++ +++");
 
         System.out.println(Integer.MAX_VALUE);
         System.out.println(Integer.MIN_VALUE);
