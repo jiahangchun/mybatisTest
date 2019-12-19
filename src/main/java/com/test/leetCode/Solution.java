@@ -607,13 +607,39 @@ public class Solution {
         return result;
     }
 
+    //46340?
+    public int mySqrt(int x) {
+        if (x <= 0) {
+            return 0;
+        }
+        if (x == 1) {
+            return 1;
+        }
+
+        //数组越界问题
+        Long mid = Long.valueOf(x / 2 + 1);
+        Long min = 1L,count=0L;
+        for (Long i = 1L; i <= mid; i++) {
+            Long result=i*i;
+            if (result<=x) {
+                min = i;
+                count++;
+            } else {
+                return min.intValue();
+            }
+        }
+        return min.intValue();
+    }
+
 
     public static void main(String[] args) {
 //        String result = new Solution().addBinary("10100000100100110110010000010101111011011001101110111111111101000000101111001110001111100001101",
 //                "110101001011101110001111100110001010100001101011101010000011011011001011101111001100000011011110011");
 //        String result2 = new Solution().addBinary("1010", "1011");
-        String result3 = new Solution().addBinary("11", "1");
-        System.out.println(JSON.toJSONString("++++++++" + result3));
+//        int result3 = new Solution().mySqrt(4);
+//        int result4 = new Solution().mySqrt(8);
+        int result5 = new Solution().mySqrt(2147395600);
+        System.out.println(JSON.toJSONString("++++++++" + result5));
 
         System.out.println(Integer.MAX_VALUE);
         System.out.println(Integer.MIN_VALUE);
