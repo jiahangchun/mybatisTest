@@ -100,6 +100,16 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
             <version>2.7.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.swagger</groupId>
+                    <artifactId>swagger-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>io.swagger</groupId>
+                    <artifactId>swagger-models</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!--es-->
@@ -137,14 +147,42 @@
         </dependency>
 
         <!--官网能下载的，但是很慢。windows可以参考https://blog.csdn.net/qq_41175905/article/details/80560429 -->
+        <!--        <dependency>-->
+        <!--            <groupId>org.opencv</groupId>-->
+        <!--            <artifactId>opencv</artifactId>-->
+        <!--            <version>3.4.1</version>-->
+        <!--            <systemPath>F:/opencv/opencv/build/java/opencv-341.jar</systemPath>-->
+        <!--            <scope>system</scope>-->
+        <!--        </dependency>-->
+
 <!--        <dependency>-->
-<!--            <groupId>org.opencv</groupId>-->
-<!--            <artifactId>opencv</artifactId>-->
-<!--            <version>3.4.1</version>-->
-<!--            <systemPath>F:/opencv/opencv/build/java/opencv-341.jar</systemPath>-->
-<!--            <scope>system</scope>-->
+<!--            <groupId>io.swagger.parser.v3</groupId>-->
+<!--            <artifactId>swagger-parser</artifactId>-->
+<!--            <version>2.0.16</version>-->
 <!--        </dependency>-->
 
+<!--        <dependency>-->
+<!--            <groupId>io.swagger</groupId>-->
+<!--            <artifactId>swagger-core</artifactId>-->
+<!--            <version>1.5.16</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>io.swagger</groupId>-->
+<!--            <artifactId>swagger-models</artifactId>-->
+<!--            <version>1.5.16</version>-->
+<!--        </dependency>-->
 
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.10.1</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.62</version>
+        </dependency>
     </dependencies>
 </project>
